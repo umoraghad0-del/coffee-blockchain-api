@@ -10,6 +10,9 @@ class Blockchain {
     return new Block(0, Date.now(),[],"0"
 );
 }
+addTransaction(transaction) {
+  this.pendingTransactions.push(transaction);
+}
 }
 
 export default Blockchain;
