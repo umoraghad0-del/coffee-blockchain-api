@@ -11,7 +11,7 @@ class Block {
     }
 
     calculateHash() {
-        const data = `d${this.index}${this.timestamp}${JSON.stringify(this.transactions)}${this.previousHash}${this.nonce}`;
+        const data = `${this.index}${this.timestamp}${JSON.stringify(this.transactions)}${this.previousHash}${this.nonce}`;
         return crypto.createHash("sha256").update(data).digest("hex");
     }
     mineBlock(difficulty) {
