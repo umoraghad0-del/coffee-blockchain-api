@@ -13,6 +13,17 @@ class Blockchain {
 addTransaction(transaction) {
   this.pendingTransactions.push(transaction);
 }
+minePendingTransactions() {
+  const newBlock = new Block(
+    this.chain.length,
+    Date.now(),
+    this.pendingTransactions,
+    this.chain[this.chain.length - 1].hash
+  );
+  newBlock.mineBlock(2);
+  this.chain.push(newBlock);
+  this.pendingTransactions = [];
+}
 isChainValid() {
   for (let i = 1; i < this.chain.length; i++) {
     const currentBlock = this.chain[i];
