@@ -2,8 +2,9 @@ import Block from "./Block.js";
 
 class Blockchain {
   constructor() {
-      this.chain = [this.createGenesisBlock()];
+  this.chain = [this.createGenesisBlock()];
   this.pendingTransactions = [];
+  this.difficulty = process.env.NODE_ENV === "test" ? 1 : 2;
 
   }
   createGenesisBlock() {
@@ -20,7 +21,7 @@ minePendingTransactions() {
     this.pendingTransactions,
     this.chain[this.chain.length - 1].hash
   );
-  newBlock.mineBlock(2);
+  newBlock.mineBlock(this.difficulty);
   this.chain.push(newBlock);
   this.pendingTransactions = [];
 }
