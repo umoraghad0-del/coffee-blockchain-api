@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import Blockchain from "../src/blockchain/Blockchain.js";
+//console.log("NODE_ENV:", process.env.NODE_ENV);
 
 describe("Blockchain", () => {
   it("should initialize with a genesis block and no pending transactions", () => {
@@ -37,4 +38,10 @@ it("should mine pending transactions into a new block", () => {
   expect(blockchain.chain).toHaveLength(2);
   expect(blockchain.pendingTransactions).toHaveLength(0);
 });
+it("should use difficulty 1 in test environment", () => {
+  const blockchain = new Blockchain();
+
+  expect(blockchain.difficulty).toBe(1);
+});
+
 });
