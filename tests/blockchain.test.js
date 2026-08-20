@@ -22,4 +22,19 @@ it("should return true for a valid blockchain", () => {
 
   expect(blockchain.isChainValid()).toBe(true);
 });
+it("should mine pending transactions into a new block", () => {
+  const blockchain = new Blockchain();
+
+  blockchain.addTransaction({
+    sender: "Farm",
+    recipient: "Roastery",
+    batchId: "BATCH-001",
+    weightKg: 500
+  });
+
+  blockchain.minePendingTransactions();
+
+  expect(blockchain.chain).toHaveLength(2);
+  expect(blockchain.pendingTransactions).toHaveLength(0);
+});
 });
