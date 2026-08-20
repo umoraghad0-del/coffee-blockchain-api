@@ -17,4 +17,9 @@ describe("Blockchain", () => {
   expect(blockchain.pendingTransactions).toHaveLength(1);
   expect(blockchain.pendingTransactions[0]).toEqual(transaction);
 });
+it("should return true for a valid blockchain", () => {
+  const blockchain = new Blockchain();
+
+  expect(blockchain.isChainValid()).toBe(true);
+});
 });
