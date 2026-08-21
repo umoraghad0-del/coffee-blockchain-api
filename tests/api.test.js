@@ -9,4 +9,18 @@ describe("Blockchain API", () => {
     expect(response.status).toBe(200);
     expect(response.body.chain).toBeDefined();
   });
+  it("should add a new transaction", async () => {
+  const transaction = {
+    sender: "Farm A",
+    recipient: "Roastery A",
+    batchId: "BATCH-001",
+    weightKg: 500
+  };
+
+  const response = await request(app)
+    .post("/transactions")
+    .send(transaction);
+
+  expect(response.status).toBe(201);
+});
 });
