@@ -29,5 +29,17 @@ it("should mine pending transactions into a new block", async () => {
   expect(response.status).toBe(201);
   expect(response.body.hash).toBeDefined();
 });
+it("should reject a transaction without batchId", async () => {
+  const invalidTransaction = {
+    sender: "Farm A",
+    recipient: "Roastery A",
+    weightKg: 500
+  };
 
+  const response = await request(app)
+    .post("/transactions")
+    .send(invalidTransaction);
+
+  expect(response.status).toBe(400);
+});
 });
