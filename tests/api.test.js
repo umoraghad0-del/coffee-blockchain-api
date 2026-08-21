@@ -23,4 +23,11 @@ describe("Blockchain API", () => {
 
   expect(response.status).toBe(201);
 });
+it("should mine pending transactions into a new block", async () => {
+  const response = await request(app).post("/mine");
+
+  expect(response.status).toBe(201);
+  expect(response.body.hash).toBeDefined();
+});
+
 });
