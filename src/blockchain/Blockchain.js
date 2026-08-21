@@ -24,6 +24,8 @@ minePendingTransactions() {
   newBlock.mineBlock(this.difficulty);
   this.chain.push(newBlock);
   this.pendingTransactions = [];
+    return newBlock;
+
 }
 isChainValid() {
   for (let i = 1; i < this.chain.length; i++) {

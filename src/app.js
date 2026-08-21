@@ -12,4 +12,11 @@ app.post("/transactions", (req, res) => {
 
   res.status(201).json(req.body);
 });
+app.post("/mine", (req, res) => {
+  const newBlock = blockchain.minePendingTransactions();
+  res.status(201).json(newBlock);
+  
+});
+
+
 export default app;
