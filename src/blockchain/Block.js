@@ -12,7 +12,7 @@ class Block {
 
     calculateHash() {
         const data = `${this.index}${this.timestamp}${JSON.stringify(this.transactions)}${this.previousHash}${this.nonce}`;
-        return crypto.createHash("sha256").update(data).digest("hex");
+        return crypto.createHash("sha256").update(data).digest("hex"); 
     }
     mineBlock(difficulty) {
   const target = "0".repeat(difficulty);
