@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import Blockchain from "../src/blockchain/Blockchain.js";
-//console.log("NODE_ENV:", process.env.NODE_ENV);
 
 describe("Blockchain", () => {
   it("should initialize with a genesis block and no pending transactions", () => {
@@ -56,6 +55,24 @@ it("should return false when a block has been tampered with", () => {
   blockchain.minePendingTransactions();
 
   blockchain.chain[1].transactions[0].weightKg = 999;
+
+  expect(blockchain.isChainValid()).toBe(false);
+});
+it("should return false when previousHash has been tampered with", () => {
+  const blockchain = new Blockchain();
+
+  blockchain.addTransaction({
+    sender: "Farm A",
+    recipient: "Roastery A",
+    batchId: "BATCH-001",
+    weightKg: 500
+  });
+
+  blockchain.minePendingTransactions();
+
+  blockchain.chain[1].previousHash = "fake-hash";
+    blockchain.chain[1].hash =
+    blockchain.chain[1].calculateHash();
 
   expect(blockchain.isChainValid()).toBe(false);
 });
